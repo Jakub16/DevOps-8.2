@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  flask-service:
+    build: .
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --output /dev/null --show-error --fail http://localhost:5000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
